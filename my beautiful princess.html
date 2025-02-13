@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            margin: 2cm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: auto;
+            color: red;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        .yes, .return-button, .continue {
+            background-color: pink;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: pink;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 20px;
+            max-width: 80%;
+            white-space: pre-line;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>hey my sweet baby, will you make me the happiest man alive? will you be my valentine? ❤️</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Yes</button>
+        <button class="no" onmouseover="moveButton()">No</button>
+    </div>
+    <h2 id="response" class="hidden"></h2>
+    <button id="continueButton" class="continue hidden" onclick="showQuestions()">Continue</button>
+    <div id="questions" class="hidden">
+        <h2>do you believe in love?</h2>
+        <button class="yes" onclick="highlightButton(this)">Yes</button>
+        <button class="no">No</button>
+        <h2>do you love being weird together?</h2>
+        <button class="yes" onclick="highlightButton(this)">Yes</button>
+        <button class="no">No</button>
+        <h2>are you ready for me to yearn over you and adore every fibre of your being forever?</h2>
+        <button class="yes" onclick="highlightButton(this)">Yes</button>
+        <button class="no">No</button>
+        <h2>are you ready for our love to grow from where it is today?</h2>
+        <button class="yes" onclick="highlightButton(this), showFinalButton()">Yes</button>
+        <button class="no">No</button>
+    </div>
+    <button id="finalButton" class="continue hidden" onclick="showFinalMessage()">Only click here once you've answered everything</button>
+    <h2 id="finalMessage" class="message hidden"></h2>
+    <script>
+        function showLove() {
+            document.querySelector('.buttons').style.display = 'none';
+            let responseText = "before all that, you have to go through a couple hurdles before victory...\nFor your first hurdle, complete these set of questions...";
+            let i = 0;
+            let responseElement = document.getElementById('response');
+            responseElement.classList.remove('hidden');
+            function typeWriter() {
+                if (i < responseText.length) {
+                    responseElement.innerHTML += responseText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                } else {
+                    document.getElementById('continueButton').classList.remove('hidden');
+                }
+            }
+            typeWriter();
+        }
+        function moveButton() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            document.querySelector('.no').style.left = x + 'px';
+            document.querySelector('.no').style.top = y + 'px';
+        }
+        function showQuestions() {
+            document.getElementById('continueButton').classList.add('hidden');
+            document.getElementById('questions').classList.remove('hidden');
+        }
+        function highlightButton(button) {
+            button.style.backgroundColor = 'green';
+        }
+        function showFinalButton() {
+            document.getElementById('finalButton').classList.remove('hidden');
+        }
+        function showFinalMessage() {
+            document.getElementById('questions').remove();
+            document.getElementById('finalButton').remove();
+            let finalText = `baby, if you've got to this point, happy valentine's day my love.
+
+you have been there for my worst, and for my best, you are my sunshine and most importantly my everything, you are truly stunning.
+
+till this day, I still ask the Lord if I really deserve you, because you are truly Yahweh's prized possession.
+you are gorgeous, absolutely stunning, breathtaking, again, I ask myself how you are mine.
+
+all the adjectives I've used so far are really just understatements, because my vocabulary isn't as extensive to accurately describe your beauty, and don't get me started on the way you love, the way you feel, the way you receive.
+
+you are as beautiful as you are outside, inside. I admire your heart, I myself wish to feel like you, you're empathetic, sweet, considerate, caring, warm, soft. you are an angel, you could do no wrong.
+
+joy is what i feel in your presence, full is what i truly am in your company, seconds turn into minutes, minutes turn into hours, hours turn into days yet i'm still not tired of your existence, nor will it ever tire me, to be frank you are like an ocean (clock thattttt), deep, vast and nurturing. till death do us apart? applies not to me because my love is undying.
+
+to finally end your journey here, happy valentine's day my love.
+As far as we are, i feel the closest to you baby.`;
+            let i = 0;
+            let messageElement = document.getElementById('finalMessage');
+            messageElement.classList.remove('hidden');
+            function typeWriter() {
+                if (i < finalText.length) {
+                    messageElement.innerHTML += finalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            }
+            typeWriter();
+        }
+    </script>
+</body>
+</html>
